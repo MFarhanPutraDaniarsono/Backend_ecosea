@@ -1,0 +1,86 @@
+{% extends "admin/layout.html" %}
+{% block content %}
+
+<h2>Ulasan Aplikasi</h2>
+<p>Rating bintang + kritik &amp; saran dari user aplikasi mobile</p>
+
+<div class="stat-cards">
+  <div class="stat-card">
+    <div class="stat-title">Total Ulasan</div>
+    <div class="stat-value">{{ total }}</div>
+  </div>
+
+  <div class="stat-card">
+    <div class="stat-title">Rata-rata Rating</div>
+    <div class="stat-value">{{ avg_rating }} / 5</div>
+  </div>
+
+  <div class="stat-card">
+    <div class="stat-title">Sentimen</div>
+    <div class="stat-sub">
+      <span class="badge pos">Positif: {{ sentiment_count.positif }}</span>
+      <span class="badge neu">Netral: {{ sentiment_count.netral }}</span>
+      <span class="badge neg">Negatif: {{ sentiment_count.negatif }}</span>
+    </div>
+  </div>
+
+  <div class="stat-card">
+    <div class="stat-title">Distribusi Bintang</div>
+    <div class="stat-sub">
+      <div>⭐ 5: {{ star_count[5] }}</div>
+      <div>⭐ 4: {{ star_count[4] }}</div>
+      <div>⭐ 3: {{ star_count[3] }}</div>
+      <div>⭐ 2: {{ star_count[2] }}</div>
+      <div>⭐ 1: {{ star_count[1] }}</div>
+    </div>
+  </div>
+</div>
+
+<div class="table-wrap">
+  <table class="wide">
+    <thead>
+      <tr>
+        <th>Tanggal</th>
+        <th>User</th>
+        <th>Email</th>
+        <th>Rating</th>
+        <th>Sentimen</th>
+        <th>Kritik</th>
+        <th>Saran</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in reviews %}
+      <tr>
+        <td>{{ r.created_at }}</td>
+        <td><b>{{ r.nama }}</b></td>
+        <td>{{ r.email }}</td>
+        <td>
+          <span class="rating">
+            {% for i in range(r.rating) %}⭐{% endfor %}
+            {% for i in range(5 - r.rating) %}☆{% endfor %}
+          </span>
+          <div class="muted">{{ r.rating }}/5</div>
+        </td>
+        <td>
+          {% if r.sentiment == 'positif' %}
+            <span class="badge pos">positif</span>
+          {% elif r.sentiment == 'negatif' %}
+            <span class="badge neg">negatif</span>
+          {% else %}
+            <span class="badge neu">netral</span>
+          {% endif %}
+        </td>
+        <td class="text-cell">{{ r.kritik }}</td>
+        <td class="text-cell">{{ r.saran }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% if reviews|length == 0 %}
+<p>Belum ada ulasan.</p>
+{% endif %}
+
+{% endblock %}

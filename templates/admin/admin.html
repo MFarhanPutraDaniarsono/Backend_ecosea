@@ -1,0 +1,33 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+<h2>Dashboard Laporan Pantai</h2>
+
+<table>
+<tr>
+    <th>Pantai</th>
+    <th>Deskripsi</th>
+    <th>Status</th>
+    <th>Aksi</th>
+</tr>
+
+{% for r in reports %}
+<tr>
+<form method="POST" action="/admin/update/{{ r.id }}">
+    <td>{{ r.nama_pantai }}</td>
+    <td>{{ r.deskripsi }}</td>
+    <td>
+        <select name="status">
+            <option value="terkirim" {% if r.status=='terkirim' %}selected{% endif %}>Terkirim</option>
+            <option value="dalam proses" {% if r.status=='dalam proses' %}selected{% endif %}>Dalam Proses</option>
+            <option value="selesai" {% if r.status=='selesai' %}selected{% endif %}>Selesai</option>
+        </select>
+    </td>
+    <td>
+        <button type="submit">Update</button>
+    </td>
+</form>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,221 @@
+/* GLOBAL */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: #f5fbff; /* sama vibe background Flutter */
+}
+
+/* NAVBAR (mirip AppBar Flutter) */
+.navbar {
+  position: sticky;
+  top: 0;
+  background: #00B4D8; /* Flutter primary */
+  color: #fff;
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 3px 8px rgba(0,0,0,.18);
+}
+
+.nav-menu a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 14px;
+  font-weight: 600;
+}
+
+.nav-menu a:hover {
+  text-decoration: underline;
+}
+
+/* CONTAINER */
+.container {
+  padding: 22px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* CARD & TABLE (mirip Container Flutter) */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 14px; /* sama radius Flutter */
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,.08);
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #e9f1f6;
+  vertical-align: top;
+}
+
+th {
+  text-align: left;
+  background: #e4f4ff;
+  color: #0077B6; /* primary dark */
+}
+
+tr:hover td {
+  background: #f3fbff;
+}
+
+/* FORM */
+input[type="text"], textarea, select {
+  padding: 10px;
+  width: 100%;
+  max-width: 520px;
+  border: 1px solid #cfe6f2;
+  border-radius: 10px;
+}
+
+/* BUTTON (CTA Flutter) */
+button {
+  background: #0060C0; /* FAB Flutter */
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+button:hover {
+  filter: brightness(1.1);
+}
+
+/* GRID MENU (mirip HomeMenuItem) */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 14px 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.08);
+  text-align: center;
+  font-weight: 600;
+}
+
+/* LOGOUT BUTTON */
+.logout {
+  background: rgba(255,255,255,.18);
+  padding: 8px 12px;
+  border-radius: 10px;
+  color: #fff;
+}
+
+/* TABLE WRAPPER (biar tabel lebar tetap rapi, bisa scroll horizontal) */
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 14px;
+}
+
+/* Untuk tabel yang kolomnya banyak */
+table.wide {
+  min-width: 980px;
+}
+
+/* Cell teks panjang */
+.text-cell {
+  max-width: 320px;
+  white-space: pre-wrap;
+}
+
+/* Form control khusus di tabel */
+.table-input,
+.table-textarea,
+.table-select {
+  width: 100%;
+  max-width: 100%;
+}
+
+.table-textarea {
+  resize: vertical;
+}
+
+/* ACTIONS */
+.actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.actions form {
+  margin: 0;
+}
+
+button.btn-danger {
+  background: #D62828;
+}
+
+/* FORM BLOCK (biar form tambah berita / input lainnya rapi) */
+.form-block {
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.08);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 700px;
+}
+
+.form-block label {
+  font-weight: 700;
+  color: #0077B6;
+}
+
+/* REVIEWS: SUMMARY + BADGE */
+.stat-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 12px 0 16px;
+}
+
+.stat-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 12px 14px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.08);
+}
+
+.stat-title {
+  font-weight: 700;
+  color: #0077B6;
+  margin-bottom: 6px;
+}
+
+.stat-value {
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.stat-sub {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: #2b2b2b;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.badge.pos { background: #d1fae5; color: #065f46; }
+.badge.neu { background: #e5e7eb; color: #374151; }
+.badge.neg { background: #fee2e2; color: #991b1b; }
+
+.muted { color: #6b7280; font-size: 12px; margin-top: 4px; }

@@ -1,0 +1,109 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+<h2>Kelola Berita</h2>
+<p>Tambah, edit (update), dan hapus berita.</p>
+
+<!-- FORM TAMBAH BERITA -->
+<form method="POST" enctype="multipart/form-data" class="form-block">
+    <label>Judul Berita</label>
+    <input type="text" name="judul" placeholder="Judul Berita" required>
+
+    <label>Isi Berita</label>
+    <textarea name="isi" placeholder="Isi Berita" rows="5" required></textarea>
+
+    <label>Gambar (opsional)</label>
+    <input type="file" name="gambar" accept="image/*">
+
+    <button type="submit">Tambah Berita</button>
+</form>
+
+<hr>
+
+<!-- TABEL BERITA -->
+<div class="table-wrap">
+  <table class="wide">
+    <thead>
+      <tr>
+        <th>Judul</th>
+        <th>Isi Berita</th>
+        <th>Gambar</th>
+        <th>Tanggal</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for n in news_list %}
+      <!-- form update, controls di-bind pakai atribut form= -->
+      <form
+        id="update-{{ n['id'] }}"
+        action="{{ url_for('admin_web.update_news', id=n['id']) }}"
+        method="POST"
+        enctype="multipart/form-data"
+      ></form>
+
+      <tr>
+        <td>
+          <input
+            type="text"
+            name="judul"
+            class="table-input"
+            value="{{ n['judul'] }}"
+            form="update-{{ n['id'] }}"
+            required
+          >
+        </td>
+
+        <td>
+          <textarea
+            name="isi"
+            class="table-textarea"
+            rows="4"
+            form="update-{{ n['id'] }}"
+            required
+          >{{ n['isi'] }}</textarea>
+        </td>
+
+        <td>
+          {% if n['gambar'] %}
+            <img src="{{ n['gambar'] }}" width="120" alt="Gambar berita">
+          {% else %}
+            -
+          {% endif %}
+
+          <div style="margin-top:8px">
+            <input
+              type="file"
+              name="gambar"
+              accept="image/*"
+              form="update-{{ n['id'] }}"
+            >
+          </div>
+        </td>
+
+        <td>{{ n['created_at'][:10] }}</td>
+
+        <td>
+          <div class="actions">
+            <button type="submit" form="update-{{ n['id'] }}">Update</button>
+
+            <form
+              action="{{ url_for('admin_web.delete_news', id=n['id']) }}"
+              method="POST"
+              onsubmit="return confirm('Yakin ingin menghapus berita ini?');"
+            >
+              <button type="submit" class="btn-danger">Hapus</button>
+            </form>
+          </div>
+        </td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="5" align="center">Belum ada berita</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

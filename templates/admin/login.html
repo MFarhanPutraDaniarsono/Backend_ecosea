@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Admin EcoSea</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        /* ================= GLOBAL ================= */
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(180deg, #d6f3ff, #f5fbff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* ================= LOGIN CARD ================= */
+        .login-box {
+            background: #fff;
+            padding: 30px 28px;
+            width: 360px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 12px 28px rgba(0,0,0,.15);
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #063d4a;
+            margin-bottom: 6px;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        /* ================= FORM ================= */
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 12px;
+            border: 1px solid #cfe6f2;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #00B4D8;
+            box-shadow: 0 0 0 2px rgba(0,180,216,.2);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background: #0060C0; /* CTA Flutter */
+            color: #fff;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        button:hover {
+            filter: brightness(1.05);
+        }
+
+        .note {
+            font-size: 12px;
+            color: #777;
+            margin-top: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-box">
+        <div class="title">Login Admin EcoSea</div>
+        <div class="subtitle">
+            Masuk untuk mengelola laporan kebersihan laut 🌊
+        </div>
+
+        <form method="POST">
+            <input type="text" name="email" placeholder="Masukkan Email" required>
+            <input type="password" name="password" placeholder="Masukkan Password" required>
+
+            <button type="submit">Masuk Sekarang</button>
+        </form>
+
+        <div class="note">
+            Akses hanya untuk admin terdaftar
+        </div>
+    </div>
+
+</body>
+</html>

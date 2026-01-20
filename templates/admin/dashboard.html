@@ -1,0 +1,28 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+<h2>Dashboard EcoSea</h2>
+<p>Ringkasan laporan kondisi pantai</p>
+
+<div class="cards">
+    <div class="card">
+        <h3>Total Laporan</h3>
+        <p>{{ total }}</p>
+    </div>
+
+    <div class="card yellow">
+        <h3>Diproses</h3>
+        <p>{{ diproses }}</p>
+    </div>
+
+    <div class="card blue">
+        <h3>Menunggu</h3>
+        <p>{{ menunggu  }}</p>
+    </div>
+
+    <div class="card green">
+        <h3>Selesai</h3>
+        <p>{{ selesai }}</p>
+    </div>
+</div>
+{% endblock %}

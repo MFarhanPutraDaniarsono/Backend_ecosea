@@ -1,0 +1,78 @@
+{% extends "admin/layout.html" %}
+{% block content %}
+
+<h2>Daftar Laporan Masyarakat</h2>
+<p>Laporan yang masuk dari aplikasi mobile</p>
+
+<div class="table-wrap">
+  <table class="wide">
+    <thead>
+      <tr>
+        <th>Tanggal</th>
+        <th>Nama User</th>
+        <th>Judul</th>
+        <th>Deskripsi</th>
+        <th>Foto</th>
+        <th>Lokasi</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Status</th>
+        <th>Tanggapan</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in reports %}
+      <tr>
+        <td>{{ r.tanggal }}</td>
+        <td>{{ r.nama }}</td>
+        <td><b>{{ r.judul }}</b></td>
+        <td class="text-cell">{{ r.deskripsi }}</td>
+
+        <td>
+          {% if r.foto %}
+            <img src="{{ r.foto }}" width="80" alt="Foto laporan">
+          {% else %}
+            -
+          {% endif %}
+        </td>
+
+        <td>{{ r.lokasi }}</td>
+        <td>{{ r.latitude }}</td>
+        <td>{{ r.longitude }}</td>
+
+        <td>
+          <form method="POST" action="/admin/laporan/{{ r.id }}">
+            <select name="status" class="table-select">
+              <option value="menunggu" {% if r.status == "menunggu" %}selected{% endif %}>Menunggu</option>
+              <option value="diproses" {% if r.status == "diproses" %}selected{% endif %}>Diproses</option>
+              <option value="selesai" {% if r.status == "selesai" %}selected{% endif %}>Selesai</option>
+            </select>
+        </td>
+
+        <td>
+            <input
+              type="text"
+              name="tanggapan"
+              class="table-input"
+              value="{{ r.tanggapan or '' }}"
+              placeholder="Tanggapan"
+            >
+        </td>
+
+        <td>
+            <button type="submit">Update</button>
+          </form>
+        </td>
+
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% if reports|length == 0 %}
+<p>Belum ada laporan dari masyarakat.</p>
+{% endif %}
+
+{% endblock %}

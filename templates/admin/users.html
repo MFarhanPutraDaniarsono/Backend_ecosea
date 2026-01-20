@@ -1,0 +1,21 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+<h3>Daftar Akun User</h3>
+
+<table border="1" cellpadding="10">
+  <tr>
+    <th>No</th>
+    <th>Email</th>
+    <th>Tanggal Daftar</th>
+  </tr>
+
+  {% for user in users %}
+  <tr>
+    <td>{{ user.id }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.id }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

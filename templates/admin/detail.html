@@ -1,0 +1,52 @@
+{% extends "admin/layout.html" %}
+{% block content %}
+<h2>Detail Laporan</h2>
+
+<div class="card">
+  <h3>{{ laporan.judul }}</h3>
+  <p><b>Pelapor:</b> {{ laporan.nama }}</p>
+  <p><b>Tanggal:</b> {{ laporan.tanggal }}</p>
+  <p><b>Status:</b> {{ laporan.status }}</p>
+  <p><b>Deskripsi:</b><br>{{ laporan.deskripsi }}</p>
+
+  {% if laporan.foto %}
+    <div style="margin-top:12px">
+      <img src="/uploads/laporan/{{ laporan.foto }}"
+           alt="foto laporan"
+           style="max-width:420px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.15)">
+    </div>
+  {% endif %}
+</div>
+
+<h3 style="margin-top:18px">Tanggapi</h3>
+
+<form method="post">
+  <label>Status</label><br>
+
+  <select name="status" required>
+    <option value="terkirim" {% if laporan.status == 'terkirim' %}selected{% endif %}>
+      Menunggu
+    </option>
+
+    <option value="dalam proses" {% if laporan.status == 'dalam proses' %}selected{% endif %}>
+      Diproses
+    </option>
+
+    <option value="selesai" {% if laporan.status == 'selesai' %}selected{% endif %}>
+      Selesai
+    </option>
+  </select>
+
+  <br><br>
+
+  <label>Tanggapan</label><br>
+  <textarea name="tanggapan"
+            rows="4"
+            style="width:100%"
+            placeholder="Tulis tanggapan admin...">{{ laporan.tanggapan or '' }}</textarea>
+
+  <br><br>
+
+  <button type="submit">Simpan</button>
+</form>
+{% endblock %}
