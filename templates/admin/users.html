@@ -5,7 +5,8 @@
 
 <table border="1" cellpadding="10">
   <tr>
-    <th>No</th>
+    <th>ID</th>
+    <th>Nama</th>
     <th>Email</th>
     <th>Tanggal Daftar</th>
   </tr>
@@ -13,8 +14,9 @@
   {% for user in users %}
   <tr>
     <td>{{ user.id }}</td>
+    <td>{{ user.nama }}</td>
     <td>{{ user.email }}</td>
-    <td>{{ user.id }}</td>
+    <td>{{ user.created_at or '-' }}</td>
   </tr>
   {% endfor %}
 </table>

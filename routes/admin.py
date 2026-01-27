@@ -79,6 +79,6 @@ def list_users():
             'id': u.id,
             'nama': u.nama,
             'email': u.email,
-            'role': u.role
-        } for u in users
+            'role': u.role,
+            'created_at': (u.created_at.strftime("%Y-%m-%d %H:%M") if u.created_at else None)} for u in users
     ]), 200

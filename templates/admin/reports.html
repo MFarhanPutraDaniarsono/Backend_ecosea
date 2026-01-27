@@ -16,6 +16,11 @@
         <th>Lokasi</th>
         <th>Latitude</th>
         <th>Longitude</th>
+
+        <!-- Tambahan -->
+        <th>AI Label</th>
+        <th>AI Confidence</th>
+
         <th>Status</th>
         <th>Tanggapan</th>
         <th>Aksi</th>
@@ -41,6 +46,16 @@
         <td>{{ r.latitude }}</td>
         <td>{{ r.longitude }}</td>
 
+        <!-- Tambahan -->
+        <td>{{ r.ai_label or '-' }}</td>
+        <td>
+          {% if r.ai_confidence is not none %}
+            {{ (r.ai_confidence * 100) | round(1) }}%
+          {% else %}
+            -
+          {% endif %}
+        </td>
+
         <td>
           <form method="POST" action="/admin/laporan/{{ r.id }}">
             <select name="status" class="table-select">
@@ -64,7 +79,6 @@
             <button type="submit">Update</button>
           </form>
         </td>
-
       </tr>
       {% endfor %}
     </tbody>

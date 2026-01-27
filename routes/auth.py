@@ -13,23 +13,11 @@ auth_bp = Blueprint('auth', __name__)
 
 
 def _allowed_google_client_ids():
-    """Daftar client id yang diperbolehkan (dipisah koma).
-
-    Set di environment variable: GOOGLE_CLIENT_IDS
-    Contoh:
-      GOOGLE_CLIENT_IDS=xxx.apps.googleusercontent.com,yyy.apps.googleusercontent.com
-
-    Jika kosong, server tidak akan memvalidasi audience (aud) secara ketat.
-    """
     raw = os.getenv("GOOGLE_CLIENT_IDS", "")
     return [x.strip() for x in raw.split(",") if x.strip()]
 
 
 def _verify_google_id_token(token: str):
-    """Verifikasi Google ID Token.
-
-    Return: (idinfo, error_message)
-    """
     try:
         idinfo = google_id_token.verify_oauth2_token(
             token,
@@ -115,9 +103,6 @@ def google_login():
     nama = idinfo.get('name') or idinfo.get('given_name') or email.split('@')[0]
 
     user = User.query.filter_by(email=email).first()
-
-    # Jika belum ada user, buat user baru.
-    # Model saat ini mewajibkan kolom password tidak null, jadi kita isi dengan password random.
     if not user:
         user = User(
             nama=nama,
@@ -126,7 +111,6 @@ def google_login():
         )
         db.session.add(user)
     else:
-        # Kalau nama kosong, isi dari Google.
         if not getattr(user, 'nama', None) and nama:
             user.nama = nama
 

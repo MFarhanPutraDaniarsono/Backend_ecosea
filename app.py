@@ -23,6 +23,7 @@ app.register_blueprint(berita_bp, url_prefix='/api')
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
+os.makedirs(app.config["PROFILE_UPLOAD_FOLDER"], exist_ok=True)
 
 db.init_app(app)
 jwt.init_app(app)
@@ -39,6 +40,10 @@ app.register_blueprint(admin_web_bp)
 @app.route('/uploads/laporan/<filename>')
 def uploaded_file(filename):
     return send_from_directory(current_app.config['UPLOAD_FOLDER'], filename)
+
+@app.route('/uploads/profile/<filename>')
+def uploaded_profile(filename):
+    return send_from_directory(current_app.config['PROFILE_UPLOAD_FOLDER'], filename)
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True)

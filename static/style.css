@@ -123,6 +123,25 @@ table.wide {
   min-width: 980px;
 }
 
+.table-wrap{
+    overflow-x: auto;
+}
+
+table.wide{
+  width: 100%;
+  min-width: 1600px;
+  border-collapse: collapse;
+}
+table.wide th, table.wide td{
+  padding: 10px 12px;
+  vertical-align: top;
+}
+.text-cell{
+  max-width: 380px;
+  white-space: normal;
+  word-break: break-word;
+}
+
 /* Cell teks panjang */
 .text-cell {
   max-width: 320px;
