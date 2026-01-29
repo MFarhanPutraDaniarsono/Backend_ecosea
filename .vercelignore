@@ -9,3 +9,10 @@ node_modules
 .env
 data
 models
+.vercel
+.vercel/output
+ai/data
+ai/models
+*.bin
+*.pt
+*.pkl
