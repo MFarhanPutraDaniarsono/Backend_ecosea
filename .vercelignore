@@ -1,18 +1,31 @@
+# Python
 .venv
 venv
 __pycache__
 *.pyc
-*.log
-.cache
-pytest_cache
-node_modules
+
+# Environment
 .env
-data
-models
-.vercel
-.vercel/output
+
+# AI / RAG artifacts (INI PENTING)
 ai/data
 ai/models
-*.bin
-*.pt
-*.pkl
+ai/rag/data
+ai/rag/storage
+ai/rag/chroma
+ai/rag/vectorstore
+ai/rag/*.pkl
+ai/rag/*.bin
+ai/rag/*.faiss
+ai/rag/*.index
+
+# Generic large files
+*.zip
+*.tar
+*.gz
+*.csv
+*.parquet
+
+# Vercel
+.vercel
+.vercel/output
